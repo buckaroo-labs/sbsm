@@ -16,6 +16,14 @@ There are probably better ways to do this, and I don't know if anyone else will 
 ### The control file (e.g. sbsm)
 This is the file which is run from the command line with one of several command line options to start, bounce, or kill the executable; or to follow its output. This file is pretty much the same for any implementation. One need only copy the file and change the $APPNAME variable at the top to use it for managing a different process. 
 
+usage="usage: $APPNAME [-b|-f|-h|-k|-s|-t]\n
+b) Bounce\n
+f) Follow\n
+h) Help\n
+k) Kill\n
+s) Start\n 
+t) Tail\n"
+
 ### The configuration file (e.g. sbsm.cfg)
 This file defines the environment variables shared by the control file and the executable. Typically it has the same name as the control file, with an added ".cfg" suffix. The top several lines - which define the logfile, lockfile, and so forth - are pretty much standard to any implementation. One may also find it convenient to include some of the application logic here, so that the executable file sleeps, reads the config file for changes, and then wakes up with modified instructions. This way new logic can be deployed without interrupting a running process. 
 
