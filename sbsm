@@ -7,7 +7,7 @@ APPNAME=$(basename $0)
 #echo LOCKFILE=$LOCKFILE
 #echo LOGFILE=$LOGFILE
 
-usage="usage: $APPNAME [-b|-f|-h|-k|-q|-s|-t]\n
+usage="usage: $APPNAME [-b|-f|-h|-k|-s|-t]\n
 b) Bounce\n
 f) Follow\n
 h) Help\n
