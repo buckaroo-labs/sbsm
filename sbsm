@@ -1,0 +1,69 @@
+#!/bin/ksh
+APPNAME=$(basename $0)
+#echo CONFIGFILE=$APPNAME.cfg
+. ./$APPNAME.cfg
+
+#echo EXECFILE=$EXECFILE
+#echo LOCKFILE=$LOCKFILE
+#echo LOGFILE=$LOGFILE
+
+usage="usage: $APPNAME [-b|-f|-h|-k|-q|-s|-t]\n
+b) Bounce\n
+f) Follow\n
+h) Help\n
+k) Kill\n
+s) Start\n 
+t) Tail\n"
+
+while getopts "befhklqst" arg; do
+  case $arg in
+  b) #bounce
+	rm $LOCKFILE
+        echo "Please stand by. Operation should complete in less than $SLEEP_INTERVAL seconds."
+	ls -art $MY_HOME/*.log | while read logfile; do
+        LOGFILE=$logfile
+        done
+	DONE=FALSE
+	while [[ $DONE = FALSE ]]; do 
+	  grep "Exit at" $LOGFILE && DONE=TRUE
+	done	
+	nohup $EXECFILE & 
+  ;;	
+  f) ls -art $MY_HOME/*.log | while read logfile; do
+        LOGFILE=$logfile
+        done
+        tail -f $LOGFILE
+  ;;
+  h) print -u2 $usage
+  ;;
+  k) # stop/kill
+        echo "Please stand by. Operation should complete in less than $SLEEP_INTERVAL seconds."
+        rm $LOCKFILE
+        ls -art $MY_HOME/*.log | while read logfile; do
+        LOGFILE=$logfile
+        done
+        DONE=FALSE
+        while [[ $DONE = FALSE ]]; do
+          grep "Exit at" $LOGFILE && DONE=TRUE
+        done
+  ;;
+  s) #start nohup and background
+	[[ -e $LOCKFILE ]] && {
+	echo ERROR: Lock file detected. Exiting.
+	exit -1
+	}
+	nohup $EXECFILE &
+  ;;
+  t) ls -art $MY_HOME/*.log | while read logfile; do
+	LOGFILE=$logfile
+	done
+	tail -10 $LOGFILE
+  ;;
+  *) print -u2 $usage
+    exit 1
+  ;;
+
+  esac
+
+done
+
