@@ -1,7 +1,12 @@
 # sbsm
 # sophomoric bash service manager
 
-This code has its origins in trying to run something like cron on a unix-like system where cron was not available. It evolved into something else, retaining only the secondary functions of being able to start, stop, and bounce a process that runs continuously in the background, should not have more than one running instance, and should maintain some kind of log that the user may wish to follow or tail. It was used most recently for running a java program that dequeued message from a RabbitMQ server, but it really doesn't matter what the particular application is. 
+This code has its origins in trying to run something like cron on a unix-like system where cron was not available. It evolved into something else, retaining only the secondary functions of being able to start, stop, and bounce a process that 
+* runs continuously in the background, 
+* should not have more than one running instance, and 
+* should maintain some kind of log that the user may wish to follow or tail. 
+
+This code was used most recently for running a java program that dequeued message from a RabbitMQ server, but it really doesn't matter what the particular application is. 
 
 There are probably better ways to do this, and I don't know if anyone else will find this useful, but I am posting it here mostly to demonstrate that I am not a total n00b with bash scripting.
 
