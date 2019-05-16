@@ -6,7 +6,7 @@ This code has its origins in trying to run something like cron on a unix-like sy
 * should not have more than one running instance, and 
 * should maintain some kind of log that the user may wish to follow or tail. 
 
-This code was used most recently for running a java program that dequeued message from a RabbitMQ server, but it really doesn't matter what the particular application is. 
+This code was used most recently for running a java program that dequeued messages from a RabbitMQ server, but it really doesn't matter what the particular application is. 
 
 There are probably better ways to do this, and I don't know if anyone else will find this useful, but I am posting it here mostly to demonstrate that I am not a total n00b with bash scripting.
 
