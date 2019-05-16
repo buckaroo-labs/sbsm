@@ -17,6 +17,6 @@ This file defines the environment variables shared by the control file and the e
 ### The executable file (e.g. sbsm.sh)
 This file does the actual work. Typically, it has the same name as the control file, with an added ".sh" suffix. Typical behavior is to loop as long as the lockfile defined in the configuration file exists. 
 
-## These files created at runtime (as defined by the config file)
+## Files created at runtime (as defined by the config file)
  *   $LOCKFILE is used to control concurrency and provide a means for a graceful exit. If it exists when the executable file is started, the executable will exit right away. If it does not exist when the executable file is started, it will be created. The executable will periodically check that the lockfile still exists, and if it does not, the executable will exit.
  *   $LOGFILE contains the output of the executable. The control file gives the user options to tail or follow $LOGFILE. The control file uses the executable's output to $LOGFILE to know when it has been sucessfully terminated.
