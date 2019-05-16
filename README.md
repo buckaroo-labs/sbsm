@@ -1,5 +1,5 @@
 # sbsm
-# sophomoric bash service manager
+# sophomoric background service manager
 
 This code has its origins in trying to run something like cron on a unix-like system where cron was not available. It evolved into something else, retaining only the secondary functions of being able to start, stop, and bounce a process that 
 * runs continuously in the background, 
